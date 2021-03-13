@@ -1,15 +1,16 @@
+/* eslint-disable indent */
 const URL = "./Assets/menu.json";
 const request = new XMLHttpRequest();
-var respuesta = null;
+let respuesta = null;
 const navbar = document.getElementById("navbar");
 const cards = document.getElementById("div-principal");
 const categoryName = document.getElementById("category-name");
-var itemsInCart = document.getElementById(`item-numbers`);
+let itemsInCart = document.getElementById("item-numbers");
 itemsInCart.onclick = showCart;
 
-var cart = [];
-var elementsInCart = 0;
-var total = 0.0;
+let cart = [];
+let elementsInCart = 0;
+let total = 0.0;
 
 request.open("GET", URL);
 request.onload = function () {
@@ -23,7 +24,6 @@ request.onload = function () {
             element.onclick = callCards;
         });
         callCards();
-    } else {
     }
 };
 request.send();
@@ -37,7 +37,7 @@ function callCards() {
         "margin-bottom-10",
         "justify-content-evenly"
     );
-    var llamador =
+    let llamador =
         this.innerText === undefined ? respuesta[0].name : this.innerText;
     categoryName.innerText = llamador;
     for (let index = 0; index < respuesta.length; index++) {
@@ -69,31 +69,33 @@ function callCards() {
 
 //Añadir un elemento al carrito
 function addToCart() {
-    var exit = false;
+    let exit = false;
     elementsInCart += 1;
     itemsInCart.textContent = `${elementsInCart} items`;
-    var info = this.innerText.split("\n");
+    let info = this.innerText.split("\n");
     cart.forEach((element) => {
         if (element.description === info[0]) {
             element.quantity += 1;
-            (total += parseFloat(info[4].split(`$ `)[1])), (exit = true);
+            (total += parseFloat(info[4].split("$ ")[1])), (exit = true);
             return;
         }
     });
-    if (exit) return;
+    if (exit) {
+        return;
+    }
 
-    var item = {
+    let item = {
         item: cart.length + 1,
         description: info[0],
         quantity: 1,
-        unitPrice: parseFloat(info[4].split(`$ `)[1]),
+        unitPrice: parseFloat(info[4].split("$ ")[1]),
     };
-    total += parseFloat(info[4].split(`$ `)[1]);
+    total += parseFloat(info[4].split("$ ")[1]);
     cart.push(item);
 }
 
 function showCart() {
-    var htmlToInsert = "";
+    let htmlToInsert = "";
     cards.classList.remove(
         "row",
         "row-cols-auto",
@@ -127,15 +129,11 @@ function showCart() {
             <td>$ ${element.unitPrice.toFixed(2)}</td>
             <td>$ ${(element.quantity * element.unitPrice).toFixed(2)}</td>
             <td>
-                <button class="btn btn-secondary btn-sm" id="add-${
-                    index
-                }">
+                <button class="btn btn-secondary btn-sm" id="add-${index}">
                     +
                 </button>
                 &nbsp
-                <button class="btn btn-secondary btn-sm"id="remove-${
-                    index
-                }">
+                <button class="btn btn-secondary btn-sm"id="remove-${index}">
                     -
                 </button>
             </td>
@@ -159,12 +157,12 @@ function showCart() {
         document.querySelector(`#remove-${i}`).onclick = removeOneQty;
         document.querySelector(`#add-${i}`).onclick = addOneQty;
     }
-    document.querySelector(`#cancel`).onclick = cancelOrder;
-    document.querySelector(`#confirm`).onclick = confirmOrder;
+    document.querySelector("#cancel").onclick = cancelOrder;
+    document.querySelector("#confirm").onclick = confirmOrder;
 }
 
 function removeOneQty() {
-    var index = parseInt(this.id[this.id.length - 1]);
+    let index = parseInt(this.id[this.id.length - 1]);
     if (cart[index].quantity > 1) {
         cart[index].quantity--;
         total -= cart[index].unitPrice;
@@ -172,7 +170,7 @@ function removeOneQty() {
         itemsInCart.textContent = `${elementsInCart} items`;
     } else {
         total -= cart[index].unitPrice;
-        cart.splice(index, 1); 
+        cart.splice(index, 1);
         elementsInCart -= 1;
         itemsInCart.textContent = `${elementsInCart} items`;
     }
@@ -188,10 +186,9 @@ function addOneQty() {
 }
 
 function cancelOrder() {
-    console.log("confirm");
+    Console.log("confirm");
 }
 
 function confirmOrder() {
-    console.log(cart);
+    Console.log(cart);
 }
-

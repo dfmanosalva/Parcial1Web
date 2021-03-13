@@ -49,3 +49,7 @@ a {
 .margin-bottom-10 {
     margin-bottom: 60px;
 }
+
+#cart-img {
+    width: 30px;
+}
