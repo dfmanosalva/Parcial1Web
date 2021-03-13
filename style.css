@@ -1,0 +1,51 @@
+.navbar-brand {
+    font-family: "Satisfy", cursive;
+    font-size: 1.75rem;
+}
+
+p {
+    font-family: "Roboto", sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+#item-numbers {
+    color: black;
+}
+#item-numbers:hover {
+    color: lightgray;
+}
+
+#banner {
+    width: 100vw;
+    max-height: 25vh;
+    object-fit: cover;
+}
+
+.nav-link {
+    color: white;
+}
+
+.nav-link:hover {
+    color: white;
+}
+
+.nav-link:active {
+    color: grey;
+}
+
+.card-img-top {
+    height: 30vh;
+    object-fit: cover;
+    width: auto;
+}
+
+.padding-10 {
+    padding: 15px 0;
+}
+
+.margin-bottom-10 {
+    margin-bottom: 60px;
+}
