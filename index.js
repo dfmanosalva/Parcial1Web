@@ -208,7 +208,7 @@ function addOneQty() {
 }
 
 function cancelOrder() {
-    cart = {};
+    cart = [];
     total = 0.0;
     elementsInCart = 0;
     itemsInCart.textContent = `${elementsInCart} items`;
