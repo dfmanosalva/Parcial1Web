@@ -146,7 +146,29 @@ function showCart() {
     <div class="d-flex justify-content-between container-fluid">
         <span>Total: $${total.toFixed(2)}</span>
         <div>
-            <button class="btn btn-danger" id="cancel">Cancel</button>
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#cancelModal">
+            Cancel
+        </button>
+        
+        <!-- Modal -->
+        <div class="modal fade" id="cancelModal" tabindex="-1" aria-labelledby="cancelModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="cancelModalLabel">Cancel the order</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                Are you sure you want to cancel the order?
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-outline-primary"  data-bs-dismiss="modal">No, I want to continue adding products</button>
+                <button type="button" class="btn btn-danger" id="affirmativeCancel" data-bs-dismiss="modal">Yes, I want to cancel the order</button>
+              </div>
+            </div>
+          </div>
+        </div>
             <button class="btn btn-outline-success" id="confirm">
                 Confirm Order
             </button>
@@ -157,7 +179,7 @@ function showCart() {
         document.querySelector(`#remove-${i}`).onclick = removeOneQty;
         document.querySelector(`#add-${i}`).onclick = addOneQty;
     }
-    document.querySelector("#cancel").onclick = cancelOrder;
+    document.querySelector("#affirmativeCancel").onclick = cancelOrder;
     document.querySelector("#confirm").onclick = confirmOrder;
 }
 
@@ -186,9 +208,13 @@ function addOneQty() {
 }
 
 function cancelOrder() {
-    Console.log("confirm");
+    cart = {};
+    total = 0.0;
+    elementsInCart = 0;
+    itemsInCart.textContent = `${elementsInCart} items`;
+    showCart();
 }
 
 function confirmOrder() {
-    Console.log(cart);
+    console.log(cart);
 }
